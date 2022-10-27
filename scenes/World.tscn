@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://instances/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/background.jpeg" type="Texture" id=2]
+[ext_resource path="res://instances/Mushroom1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://instances/Player2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Player2.gd" type="Script" id=5]
+
+[node name="World" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 560, 800 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -432.0
+margin_top = -496.0
+margin_right = 1282.0
+margin_bottom = 1574.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 8, 37 )
+current = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mushroom1" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 16 )
+gravity_scale = 3.0
+camera_path = NodePath("../Camera2D")
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 80, 1 )
+script = ExtResource( 5 )
+camera_path = NodePath("../Camera2D")

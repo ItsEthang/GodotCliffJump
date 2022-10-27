@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/mushroom.png" type="Texture" id=1]
+[ext_resource path="res://scripts/mvMushroom.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34, 1 )
+
+[node name="Mushroom1" type="RigidBody2D" groups=["mushrooms"]]
+position = Vector2( -7, 371 )
+gravity_scale = 0.0
+custom_integrator = true
+script = ExtResource( 2 )
+camera_path = NodePath("../Camera2D")
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 9, -5 )
+scale = Vector2( 1.32143, 1.17857 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 9, -16 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 9.5, 0 )
+scale = Vector2( 3.35, 2.55 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="exit_screen"]
