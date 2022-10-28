@@ -28,8 +28,8 @@ func _ready():
 # Physics Process: kind fo like window.requestAnimationFrame(delta)
 func _physics_process(delta):
 	# get action keys
-	var leftKey = Input.is_action_pressed("ui_left_letter")
-	var rightKey = Input.is_action_pressed("ui_right_letter")
+	var leftKey = Input.is_action_pressed("P1Left")
+	var rightKey = Input.is_action_pressed("P1Right")
 	if leftKey and !rightKey:
 		# set x velocity, keep y velocity
 		if strafe > 0:
@@ -69,9 +69,9 @@ func collision(body):
 func exit_screen():
 	# avatar move out of frame
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :
-		position = Vector2(-width/2, position.y)
+		position = Vector2(-width/2 + 25, position.y)
 	if position.x < camera.position.x and get_linear_velocity().x < 0:
-		position = Vector2(width/2, position.y)
+		position = Vector2(width/2 - 25, position.y)
 	#avatar falls out of frame, reset the world
 	if position.y > (camera.position.y + height/2):
 		get_tree().change_scene(world)

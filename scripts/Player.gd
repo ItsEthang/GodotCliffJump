@@ -2,7 +2,9 @@ extends RigidBody2D
 # variables for vertical and horizontal speed
 # exporting camera node path variable
 export (NodePath) var camera_path
+export (NodePath) var mushroom_path
 var camera
+var mushroom
 # grab the world scene
 var world = 'res://scenes/World.tscn'
 
@@ -19,6 +21,7 @@ var height
 
 func _ready():
 	camera = get_node(camera_path)
+	mushroom = get_node(mushroom_path)
 	width = get_viewport_rect().size.x
 	height = get_viewport_rect().size.y
 	# grab the player's sprite
@@ -63,16 +66,18 @@ func collision(body):
 	if body.is_in_group('mushrooms'):
 		# reverse the vertical velocity
 		set_linear_velocity(Vector2(0, -(get_linear_velocity().y)-jumpSpeed))
+		$AnimationPlayer.play("jump")
+		mushroom.play("Landed")
 	pass # Replace with function body.
 
 
 func exit_screen():
 	# avatar move out of frame
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :
-		position = Vector2(-width/2, position.y)
+		position = Vector2(-width/2 + 25, position.y)
 	if position.x < camera.position.x and get_linear_velocity().x < 0:
-		position = Vector2(width/2, position.y)
+		position = Vector2(width/2 - 25, position.y)
 	#avatar falls out of frame, reset the world
-	if position.y > (camera.position.y + height/2 + 120):
+	if position.y > (camera.position.y + height/2):
 		get_tree().change_scene(world)
 	pass # Replace with function body.

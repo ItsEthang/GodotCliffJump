@@ -39,12 +39,16 @@ func _physics_process(delta):
 	# print(strafe)
 	pass
 	
+func play(string):
+	$AnimationPlayer.play(string)
+	pass
+	
 
 
 # so mushroom can teleport to the opposite side when going out of screen.
 func exit_screen():
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :
-		position = Vector2(-width/2, position.y)
+		position = Vector2(-width/2 + 56, position.y)
 	if position.x < camera.position.x and get_linear_velocity().x < 0:
-		position = Vector2(width/2, position.y)
+		position = Vector2(width/2 - 56, position.y)
 	pass # Replace with function body.
