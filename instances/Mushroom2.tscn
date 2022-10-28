@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://sprites/mushroomSprite.png" type="Texture" id=1]
-[ext_resource path="res://scripts/mvMushroom.gd" type="Script" id=2]
+[ext_resource path="res://scripts/mvMushroom.gd" type="Script" id=1]
+[ext_resource path="res://sprites/mushroomSprite.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.5, 4.5 )
@@ -53,23 +53,23 @@ tracks/0/keys = {
 "values": [ 3, 0 ]
 }
 
-[node name="Mushroom1" type="RigidBody2D" groups=["mushrooms"]]
+[node name="Mushroom2" type="RigidBody2D" groups=["mushrooms2"]]
 mode = 2
 gravity_scale = 0.0
 custom_integrator = true
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 camera_path = NodePath("../Camera2D")
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.32143, 1.17857 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 hframes = 4
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3.5 )
+position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true

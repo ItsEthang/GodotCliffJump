@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://instances/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/background.jpeg" type="Texture" id=2]
+[ext_resource path="res://sprites/Space Background.png" type="Texture" id=2]
 [ext_resource path="res://instances/Mushroom1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://instances/Player2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Player2.gd" type="Script" id=5]
+[ext_resource path="res://sprites/earth2.png" type="Texture" id=6]
+[ext_resource path="res://sprites/blackhole.png" type="Texture" id=7]
+[ext_resource path="res://sprites/ice.png" type="Texture" id=8]
+[ext_resource path="res://sprites/moon.png" type="Texture" id=9]
+[ext_resource path="res://sprites/mars.png" type="Texture" id=10]
+[ext_resource path="res://instances/Mushroom2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://instances/Mushroom3.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scripts/World.gd" type="Script" id=13]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -14,12 +23,57 @@
 motion_mirroring = Vector2( 560, 800 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_left = -425.0
-margin_top = -418.0
-margin_right = 1289.0
-margin_bottom = 1652.0
+margin_left = -770.0
+margin_top = -401.0
+margin_right = 2434.0
+margin_bottom = 1395.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.392157, 0.423529, 0.690196, 1 )
+margin_left = 74.0
+margin_top = -353.0
+margin_right = 274.0
+margin_bottom = -153.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.32549, 0.380392, 0.737255, 1 )
+margin_left = -230.0
+margin_top = 86.0
+margin_right = -9.0
+margin_bottom = 305.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.466667, 0.439216, 0.701961, 1 )
+margin_left = -317.0
+margin_top = -331.0
+margin_right = -130.0
+margin_bottom = -157.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.733333, 0.721569, 0.901961, 1 )
+margin_left = 93.0
+margin_top = 143.0
+margin_right = 293.0
+margin_bottom = 343.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.439216, 0.415686, 0.65098, 1 )
+margin_left = -137.0
+margin_top = -140.0
+margin_right = 84.0
+margin_bottom = 81.0
+texture = ExtResource( 10 )
 expand = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -32,12 +86,20 @@ __meta__ = {
 [node name="Mushroom1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 375 )
 
+[node name="Mushroom2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 100, 375 )
+
+[node name="Mushroom3" parent="." instance=ExtResource( 12 )]
+position = Vector2( -100, 375 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -70, -300 )
 z_index = 1
-gravity_scale = 3.0
+gravity_scale = 0.5
 camera_path = NodePath("../Camera2D")
 mushroom_path = NodePath("../Mushroom1")
+mushroom2_path = NodePath("../Mushroom2")
+mushroom3_path = NodePath("../Mushroom3")
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 70, -300 )
