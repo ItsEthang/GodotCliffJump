@@ -31,13 +31,15 @@ __meta__ = {
 
 [node name="Mushroom1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 375 )
+mass = 1.02041e+16
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -70, -300 )
 z_index = 1
-gravity_scale = 3.0
+gravity_scale = 2.0
 camera_path = NodePath("../Camera2D")
 mushroom_path = NodePath("../Mushroom1")
+p2_path = NodePath("../Player2")
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 70, -300 )

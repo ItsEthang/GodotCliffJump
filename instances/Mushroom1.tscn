@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/mushroomSprite.png" type="Texture" id=1]
 [ext_resource path="res://scripts/mvMushroom.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34, 1 )
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 36.0
+height = 0.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "Landed"
@@ -53,6 +54,9 @@ tracks/0/keys = {
 "values": [ 3, 0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 17.5, 15 )
+
 [node name="Mushroom1" type="RigidBody2D" groups=["mushrooms"]]
 mode = 2
 gravity_scale = 0.0
@@ -68,9 +72,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -7 )
-shape = SubResource( 1 )
+[node name="headHB" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -83,5 +88,9 @@ scale = Vector2( 3.35, 2.55 )
 anims/Landed = SubResource( 4 )
 anims/RESET = SubResource( 2 )
 anims/Reset = SubResource( 3 )
+
+[node name="BodyHB" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 15 )
+shape = SubResource( 6 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="exit_screen"]

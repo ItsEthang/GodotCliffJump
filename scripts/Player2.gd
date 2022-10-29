@@ -27,6 +27,10 @@ func _ready():
 
 # Physics Process: kind fo like window.requestAnimationFrame(delta)
 func _physics_process(delta):
+	move()
+	pass
+	
+func move():
 	# get action keys
 	var leftKey = Input.is_action_pressed("P1Left")
 	var rightKey = Input.is_action_pressed("P1Right")
@@ -56,6 +60,7 @@ func _physics_process(delta):
 			strafe += strafeAccel
 			set_linear_velocity(Vector2(strafe, get_linear_velocity().y))
 	pass
+	
 
 
 func collision(body):
