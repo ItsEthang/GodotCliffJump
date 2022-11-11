@@ -2,14 +2,17 @@ extends RigidBody2D
 # variables for vertical and horizontal speed
 # exporting camera node path variable
 export (NodePath) var camera_path
+#export (NodePath) var mushroom_path
+
+#var mushroom
 var camera
 # grab the world scene
 var world = 'res://scenes/World.tscn'
 
 #player speeds
-var jumpSpeed = 90
+var jumpSpeed = 400
 var strafe = 0
-var strafeAccel = 15
+var strafeAccel = 12.5
 #avatar sprite
 var sprite
 # viewport dimensions
@@ -19,6 +22,7 @@ var height
 
 func _ready():
 	camera = get_node(camera_path)
+#	mushroom = get_node(mushroom_path)
 	width = get_viewport_rect().size.x
 	height = get_viewport_rect().size.y
 	# grab the player's sprite
@@ -27,9 +31,16 @@ func _ready():
 
 # Physics Process: kind fo like window.requestAnimationFrame(delta)
 func _physics_process(delta):
+	move()
+	pass
+	
+func move():
 	# get action keys
-	var leftKey = Input.is_action_pressed("ui_left_letter")
-	var rightKey = Input.is_action_pressed("ui_right_letter")
+	var leftKey = Input.is_action_pressed("P1Left")
+	var rightKey = Input.is_action_pressed("P1Right")
+	var yVel = linear_velocity.y
+	if yVel > 0:
+		$AnimationPlayer.play("fall")
 	if leftKey and !rightKey:
 		# set x velocity, keep y velocity
 		if strafe > 0:
@@ -56,22 +67,19 @@ func _physics_process(delta):
 			strafe += strafeAccel
 			set_linear_velocity(Vector2(strafe, get_linear_velocity().y))
 	pass
+	
+	
+func play(string) :
+	$AnimationPlayer.play(string)
+	pass
 
-
-func collision(body):
-	#if player collides with mushroom's area2D
-	if body.is_in_group('mushrooms'):
-		# reverse the vertical velocity
-		set_linear_velocity(Vector2(0, -(get_linear_velocity().y)-jumpSpeed))
-	pass # Replace with function body.
-
-
+#detect if player moves out of frame
 func exit_screen():
 	# avatar move out of frame
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :
-		position = Vector2(-width/2, position.y)
+		position = Vector2(-width/2 + 25, position.y)
 	if position.x < camera.position.x and get_linear_velocity().x < 0:
-		position = Vector2(width/2, position.y)
+		position = Vector2(width/2 - 25, position.y)
 	#avatar falls out of frame, reset the world
 	if position.y > (camera.position.y + height/2):
 		get_tree().change_scene(world)

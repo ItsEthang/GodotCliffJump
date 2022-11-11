@@ -1,35 +1,187 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://sprites/mushroom.png" type="Texture" id=1]
+[ext_resource path="res://sprites/mushroomAnim.png" type="Texture" id=1]
 [ext_resource path="res://scripts/mvMushroom.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34, 1 )
+[sub_resource type="Animation" id=8]
+resource_name = "Idle2"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Landed"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Landed2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 2, 3, 6 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Landed3"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 2, 3, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Reset"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle1"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "respawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 10, 9, 8, 7, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 25, 2 )
 
 [node name="Mushroom1" type="RigidBody2D" groups=["mushrooms"]]
-position = Vector2( -7, 371 )
+mode = 2
+mass = 65535.0
 gravity_scale = 0.0
 custom_integrator = true
 script = ExtResource( 2 )
 camera_path = NodePath("../Camera2D")
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 9, -5 )
 scale = Vector2( 1.32143, 1.17857 )
 texture = ExtResource( 1 )
+hframes = 4
+vframes = 3
 __meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 9, -16 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 9.5, 0 )
+position = Vector2( 0, 7 )
 scale = Vector2( 3.35, 2.55 )
+__meta__ = {
+"_edit_lock_": true
+}
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle2 = SubResource( 8 )
+anims/Landed = SubResource( 4 )
+anims/Landed2 = SubResource( 9 )
+anims/Landed3 = SubResource( 10 )
+anims/RESET = SubResource( 2 )
+anims/Reset = SubResource( 3 )
+anims/idle1 = SubResource( 7 )
+anims/respawn = SubResource( 11 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 14 )
+
+[connection signal="body_entered" from="." to="." method="_on_Mushroom1_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="exit_screen"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

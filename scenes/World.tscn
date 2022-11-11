@@ -1,42 +1,120 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://instances/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/background.jpeg" type="Texture" id=2]
-[ext_resource path="res://instances/Mushroom1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/Space_Background.png" type="Texture" id=2]
+[ext_resource path="res://sprites/moon_surface.png" type="Texture" id=3]
 [ext_resource path="res://instances/Player2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Player2.gd" type="Script" id=5]
+[ext_resource path="res://sprites/earth2.png" type="Texture" id=6]
+[ext_resource path="res://scripts/World.gd" type="Script" id=7]
+[ext_resource path="res://sprites/blackhole.png" type="Texture" id=8]
+[ext_resource path="res://sprites/mars.png" type="Texture" id=9]
+[ext_resource path="res://sprites/ice.png" type="Texture" id=10]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 560, 800 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_left = -432.0
-margin_top = -496.0
-margin_right = 1282.0
-margin_bottom = 1574.0
+[node name="SpaceBng" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -278.0
+margin_top = -363.0
+margin_right = 862.0
+margin_bottom = 1227.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="MoonSurface" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = -270.0
+margin_top = -364.0
+margin_right = 290.0
+margin_bottom = 436.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Earth" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = 118.0
+margin_top = -100.0
+margin_right = 818.0
+margin_bottom = 600.0
+rect_scale = Vector2( 0.18, 0.18 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blackhole" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = -234.0
+margin_top = -206.0
+margin_right = 9766.0
+margin_bottom = 9794.0
+rect_scale = Vector2( 0.015, 0.015 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mars" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = -237.0
+margin_top = 150.0
+margin_right = 4763.0
+margin_bottom = 5150.0
+rect_scale = Vector2( 0.016, 0.016 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = -26.0
+margin_top = 93.0
+margin_right = 4974.0
+margin_bottom = 5093.0
+rect_scale = Vector2( 0.01, 0.01 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 8, 37 )
 current = true
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
-[node name="Mushroom1" parent="." instance=ExtResource( 3 )]
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 64, 16 )
+[node name="Player" parent="." groups=["player"] instance=ExtResource( 1 )]
+position = Vector2( -70, -300 )
+z_index = 1
 gravity_scale = 3.0
+__meta__ = {
+"_edit_lock_": true
+}
 camera_path = NodePath("../Camera2D")
+p2_path = NodePath("../Player2")
 
-[node name="Player2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 80, 1 )
+[node name="Player2" parent="." groups=["player"] instance=ExtResource( 4 )]
+position = Vector2( 70, -300 )
+z_index = 1
+mass = 0.5
+gravity_scale = 2.0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 camera_path = NodePath("../Camera2D")
