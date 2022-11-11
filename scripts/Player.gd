@@ -2,16 +2,16 @@ extends RigidBody2D
 # variables for vertical and horizontal speed
 # exporting camera node path variable
 export (NodePath) var camera_path
-export (NodePath) var mushroom_path
+#export (NodePath) var mushroom_path
 export (NodePath) var p2_path
 var camera
-var mushroom
+#var mushroom
 var p2
 # grab the world scene
 var world = 'res://scenes/World.tscn'
 
 #player speeds
-var jumpSpeed = 550
+var jumpSpeed = 500
 var strafe = 0
 var strafeAccel = 25
 #avatar sprite
@@ -23,7 +23,7 @@ var height
 
 func _ready():
 	camera = get_node(camera_path)
-	mushroom = get_node(mushroom_path)
+	#mushroom = get_node(mushroom_path)
 	p2 = get_node(p2_path)
 	width = get_viewport_rect().size.x
 	height = get_viewport_rect().size.y
@@ -37,9 +37,13 @@ func _physics_process(delta):
 	pass
 	
 func move():
-		# get action keys
+	# get action keys
 	var leftKey = Input.is_action_pressed("ui_left")
 	var rightKey = Input.is_action_pressed("ui_right")
+	var yVel = linear_velocity.y
+	#play falling animation if if it is moving down
+	if yVel > 0:
+		$AnimationPlayer.play("fall")
 	if leftKey and !rightKey:
 		# set x velocity, keep y velocity
 		if strafe > 0:
@@ -73,14 +77,12 @@ func collision(body):
 	#if player collides with mushroom's area2D
 	if body.is_in_group('mushrooms'):
 		# reverse the vertical velocity
-		set_linear_velocity(Vector2(0, -jumpSpeed))
+		#set_linear_velocity(Vector2(0, -jumpSpeed))
+		#player animation change
 		$AnimationPlayer.play("jump")
-		mushroom.play("Landed")
-	if body.is_in_group('player2'):
-		print('player collision')
 	pass # Replace with function body.
-
-
+	
+#check if player is out of frame
 func exit_screen():
 	# avatar move out of frame
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :

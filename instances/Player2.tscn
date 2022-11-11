@@ -1,15 +1,65 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/moonAstronautLinedSheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 11.0
-height = 6.0
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 11, 4 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 14.0
-height = 40.0
+height = 44.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fall"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump"
+length = 0.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
 
 [node name="Player" type="RigidBody2D"]
 mode = 2
@@ -20,23 +70,30 @@ script = ExtResource( 1 )
 scale = Vector2( 1.5, 1.47917 )
 texture = ExtResource( 2 )
 hframes = 5
+frame = 3
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, 24 )
+position = Vector2( -1, 38 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="jumpHB" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+position = Vector2( 1, -6 )
+shape = SubResource( 5 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -3, -1 )
+position = Vector2( 0, 1 )
 scale = Vector2( 1.9, 3.5 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2( -3, -3 )
+position = Vector2( 0, 1 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/fall = SubResource( 6 )
+anims/jump = SubResource( 4 )
 
 [connection signal="body_entered" from="Area2D" to="." method="collision"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="exit_screen"]

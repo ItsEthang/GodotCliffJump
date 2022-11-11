@@ -2,14 +2,17 @@ extends RigidBody2D
 # variables for vertical and horizontal speed
 # exporting camera node path variable
 export (NodePath) var camera_path
+#export (NodePath) var mushroom_path
+
+#var mushroom
 var camera
 # grab the world scene
 var world = 'res://scenes/World.tscn'
 
 #player speeds
-var jumpSpeed = 90
+var jumpSpeed = 400
 var strafe = 0
-var strafeAccel = 15
+var strafeAccel = 12.5
 #avatar sprite
 var sprite
 # viewport dimensions
@@ -19,6 +22,7 @@ var height
 
 func _ready():
 	camera = get_node(camera_path)
+#	mushroom = get_node(mushroom_path)
 	width = get_viewport_rect().size.x
 	height = get_viewport_rect().size.y
 	# grab the player's sprite
@@ -34,6 +38,9 @@ func move():
 	# get action keys
 	var leftKey = Input.is_action_pressed("P1Left")
 	var rightKey = Input.is_action_pressed("P1Right")
+	var yVel = linear_velocity.y
+	if yVel > 0:
+		$AnimationPlayer.play("fall")
 	if leftKey and !rightKey:
 		# set x velocity, keep y velocity
 		if strafe > 0:
@@ -67,10 +74,14 @@ func collision(body):
 	#if player collides with mushroom's area2D
 	if body.is_in_group('mushrooms'):
 		# reverse the vertical velocity
-		set_linear_velocity(Vector2(0, -(get_linear_velocity().y)-jumpSpeed))
+		#set_linear_velocity(Vector2(0, -jumpSpeed))
+		#player animation change
+		$AnimationPlayer.play("jump")
 	pass # Replace with function body.
+	
 
 
+#detect if player moves out of frame
 func exit_screen():
 	# avatar move out of frame
 	if position.x > camera.position.x and get_linear_velocity().x > 0 :
