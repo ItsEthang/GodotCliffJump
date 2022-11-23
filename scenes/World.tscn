@@ -112,7 +112,7 @@ p2_path = NodePath("../Player2")
 position = Vector2( 70, -300 )
 z_index = 1
 mass = 0.5
-gravity_scale = 2.0
+gravity_scale = 0.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true

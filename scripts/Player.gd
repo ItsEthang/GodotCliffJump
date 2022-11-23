@@ -76,6 +76,14 @@ func move():
 func play(string) :
 	$AnimationPlayer.play(string)
 	pass
+
+#reset all global vars
+func resetGlobal() :
+	Global.totalLanding = 0
+	Global.end = false
+	Global.numDown = 0
+	pass
+	
 	
 #check if player is out of frame
 func exit_screen():
@@ -87,4 +95,5 @@ func exit_screen():
 	#avatar falls out of frame, reset the world
 	if position.y > (camera.position.y + height/2):
 		get_tree().change_scene(world)
+		resetGlobal()
 	pass # Replace with function body.
