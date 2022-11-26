@@ -16,15 +16,4 @@ func _ready():
 	
 	pass
 	
-#func _physics_process(delta):
-#
-#
-#	pass
-#
-#
-#func oneSleep():
-#	for i in mushArr.size():
-#		if mushArr[i].sleep == true:
-#			Global.oneDown = true
-#	pass
 		

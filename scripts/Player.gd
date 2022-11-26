@@ -2,14 +2,9 @@ extends RigidBody2D
 # variables for vertical and horizontal speed
 # exporting camera node path variable
 export (NodePath) var camera_path
-#export (NodePath) var mushroom_path
-export (NodePath) var p2_path
 var camera
-#var mushroom
-var p2
-# grab the world scene
-var world = 'res://scenes/World.tscn'
-
+# grab the game over scene
+const gameOver = 'res://scenes/gameOver1.tscn'
 #player speeds
 var jumpSpeed = 500
 var strafe = 0
@@ -19,12 +14,10 @@ var sprite
 # viewport dimensions
 var width
 var height
-# all functions get called on start.
 
+# all functions get called on start.
 func _ready():
 	camera = get_node(camera_path)
-	#mushroom = get_node(mushroom_path)
-	p2 = get_node(p2_path)
 	width = get_viewport_rect().size.x
 	height = get_viewport_rect().size.y
 	# grab the player's sprite
@@ -94,6 +87,6 @@ func exit_screen():
 		position = Vector2(width/2 - 25, position.y)
 	#avatar falls out of frame, reset the world
 	if position.y > (camera.position.y + height/2):
-		get_tree().change_scene(world)
+		get_tree().change_scene(gameOver)
 		resetGlobal()
 	pass # Replace with function body.
