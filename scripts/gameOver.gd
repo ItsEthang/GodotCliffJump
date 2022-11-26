@@ -10,3 +10,8 @@ func _on_restart_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 	pass 
+
+
+func _on_menu_pressed():
+	get_tree().change_scene("res://scenes/menu.tscn")
+	pass # Replace with function body.

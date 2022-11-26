@@ -3,9 +3,8 @@ extends Node2D
 var mushroom  = preload('res://instances/Mushroom1.tscn')
 
 var mushArr = []
-#randomly spawn three mushrooms on ready
 func _ready():
-	#randomize()
+	#initially spawn the mushrooms with 200 units apart from each other
 	var x = -200
 	for i in 3:
 		var newMush = mushroom.instance()
