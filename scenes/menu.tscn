@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/connection_ii/ConnectionII.tres" type="DynamicFont" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://sprites/Space_Background.png" type="Texture" id=6]
 [ext_resource path="res://sprites/mars.png" type="Texture" id=7]
 [ext_resource path="res://sprites/ice.png" type="Texture" id=8]
+[ext_resource path="res://music/Cliff Jump Theme(3.0).mp3" type="AudioStream" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.109804, 0.145098, 0.207843, 1 )
@@ -109,6 +110,11 @@ margin_right = 114.0
 margin_bottom = 158.0
 custom_fonts/font = ExtResource( 3 )
 text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

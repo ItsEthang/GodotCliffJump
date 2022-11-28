@@ -129,6 +129,7 @@ func _on_Area2D_body_entered(body):
 		#print('jump!')
 		body.play('jump')
 		set_linear_velocity(Vector2(get_linear_velocity().x, 0))
+		
 		if !sleep:
 			body.set_linear_velocity(Vector2(0, -500))
 			Landed()

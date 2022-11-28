@@ -2,6 +2,7 @@ extends Node2D
 #load mushroom from the instances folder
 var mushroom  = preload('res://instances/Mushroom1.tscn')
 
+
 var mushArr = []
 func _ready():
 	#initially spawn the mushrooms with 200 units apart from each other

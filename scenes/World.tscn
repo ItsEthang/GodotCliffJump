@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://instances/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/Space_Background.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://sprites/blackhole.png" type="Texture" id=8]
 [ext_resource path="res://sprites/mars.png" type="Texture" id=9]
 [ext_resource path="res://sprites/ice.png" type="Texture" id=10]
+[ext_resource path="res://music/Cliff Jump Theme(3.0).mp3" type="AudioStream" id=11]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 7 )
@@ -117,3 +118,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 camera_path = NodePath("../Camera2D")
+
+[node name="SoundTrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -20.0
+autoplay = true
