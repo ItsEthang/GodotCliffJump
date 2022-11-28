@@ -5,6 +5,9 @@ export (NodePath) var camera_path
 var camera
 # grab the game over scene
 const gameOver = 'res://scenes/gameOver1.tscn'
+
+# grab pause screen
+const pauseScreen = preload('res://scenes/PauseScreen.tscn')
 #player speeds
 var jumpSpeed = 500
 var strafe = 0
@@ -90,3 +93,8 @@ func exit_screen():
 		get_tree().change_scene(gameOver)
 		resetGlobal()
 	pass # Replace with function body.
+
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		var pause_menu = pauseScreen.instance()
+		add_child(pause_menu)

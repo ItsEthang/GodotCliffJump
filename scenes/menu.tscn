@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/connection_ii/ConnectionII.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/connection_ii/ConnectionII_32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://sprites/earth2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/blackhole.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Space_Background.png" type="Texture" id=6]
+[ext_resource path="res://sprites/mars.png" type="Texture" id=7]
+[ext_resource path="res://sprites/ice.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.109804, 0.145098, 0.207843, 1 )
@@ -14,6 +19,50 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+margin_right = 560.0
+margin_bottom = 800.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect"]
+modulate = Color( 0.584314, 0.6, 0.658824, 1 )
+margin_left = 20.0
+margin_top = 250.0
+margin_right = 175.0
+margin_bottom = 405.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/TextureRect"]
+modulate = Color( 0.513726, 0.509804, 0.623529, 1 )
+margin_left = 380.0
+margin_top = 200.0
+margin_right = 529.0
+margin_bottom = 349.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/TextureRect"]
+modulate = Color( 0.619608, 0.639216, 0.733333, 1 )
+margin_left = 310.0
+margin_top = 540.0
+margin_right = 510.0
+margin_bottom = 740.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="PanelContainer/TextureRect"]
+modulate = Color( 0.482353, 0.501961, 0.654902, 1 )
+margin_left = 300.0
+margin_top = 600.0
+margin_right = 540.0
+margin_bottom = 840.0
+rect_rotation = 111.9
+texture = ExtResource( 5 )
+expand = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 560.0
