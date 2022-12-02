@@ -8,9 +8,10 @@ var camera
 const gameOver = 'res://scenes/gameOver2.tscn'
 
 #player speeds
-var jumpSpeed = 400
+var jumpSpeed = 435
 var strafe = 0
-var strafeAccel = 12.5
+var strafeAccel = 15
+var maxStrafe = 395
 #avatar sprite
 var sprite
 # viewport dimensions
@@ -43,14 +44,16 @@ func move():
 		# set x velocity, keep y velocity
 		if strafe > 0:
 			strafe = 0
-		strafe -= strafeAccel
+		if strafe > -maxStrafe:
+			strafe -= strafeAccel
 		# flip the sprite left
 		sprite.set_flip_h(true)
 		set_linear_velocity(Vector2(strafe, get_linear_velocity().y))
 	if rightKey and !leftKey:
 		if strafe < 0:
 			strafe = 0
-		strafe += strafeAccel
+		if strafe < maxStrafe:
+			strafe += strafeAccel
 		# unflip the sprite(facing right)
 		sprite.set_flip_h(false)
 		set_linear_velocity(Vector2(strafe, get_linear_velocity().y))

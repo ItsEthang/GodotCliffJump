@@ -33,11 +33,11 @@ func _physics_process(delta):
 	#this is needed so despawned mushrooms can't respawn immediately
 	respawnDelay += delta
 	
-	# randomize the strafing velocity again every 0.75 second
-	if timePassed >= 0.75:
+	# randomize the strafing velocity again every 1.25 second
+	if timePassed >= 1.25:
 		timePassed = 0
 		random.randomize()
-		strafe = random.randf_range(-150, 150)
+		strafe = random.randf_range(-120, 120)
 		if strafe < 0:
 			strafe -= cnstSpd
 		if strafe > 0:
@@ -107,6 +107,8 @@ func respawn():
 
 	
 func Landed():
+	#play bounce sound effect
+	$AudioStreamPlayer2D.play()
 	#platform animation change
 	#print('player contact')
 	if landed == 0:
@@ -131,6 +133,6 @@ func _on_Area2D_body_entered(body):
 		set_linear_velocity(Vector2(get_linear_velocity().x, 0))
 		
 		if !sleep:
-			body.set_linear_velocity(Vector2(0, -500))
+			body.set_linear_velocity(Vector2(0, -body.jumpSpeed))
 			Landed()
 	pass # Replace with function body.

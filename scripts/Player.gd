@@ -9,9 +9,10 @@ const gameOver = 'res://scenes/gameOver1.tscn'
 # grab pause screen
 const pauseScreen = preload('res://scenes/PauseScreen.tscn')
 #player speeds
-var jumpSpeed = 500
+var jumpSpeed = 525
 var strafe = 0
 var strafeAccel = 25
+var maxStrafe = 525
 #avatar sprite
 var sprite
 # viewport dimensions
@@ -44,14 +45,16 @@ func move():
 		# set x velocity, keep y velocity
 		if strafe > 0:
 			strafe = 0
-		strafe -= strafeAccel
+		if strafe > -maxStrafe:
+			strafe -= strafeAccel
 		# flip the sprite left
 		sprite.set_flip_h(true)
 		set_linear_velocity(Vector2(strafe, get_linear_velocity().y))
 	if rightKey and !leftKey:
 		if strafe < 0:
 			strafe = 0
-		strafe += strafeAccel
+		if strafe < maxStrafe:
+			strafe += strafeAccel
 		# unflip the sprite(facing right)
 		sprite.set_flip_h(false)
 		set_linear_velocity(Vector2(strafe, get_linear_velocity().y))
