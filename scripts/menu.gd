@@ -6,5 +6,5 @@ func _on_play_pressed():
 
 
 func _on_quit_pressed():
-	get_tree().quit()
+	get_tree().change_scene("res://scenes/thanks.tscn")
 	pass
